@@ -125,9 +125,12 @@
           //将技能skills转换成对象
           let newArr=[];
           this.model = res.data.result[0];
-          res.data.result[0].skills.split('&').forEach((item)=>{
+          if(res.data.result[0].skills){
+            res.data.result[0].skills.split('&').forEach((item)=>{
             newArr.push(JSON.parse(item));
           })
+          }
+          
           this.model.skills=newArr;
         } else {
           this.$message({
@@ -161,9 +164,9 @@
       },
       addSkills(){
         this.model.skills.push({
-          skill_name:'',
-          skill_introduce:'',
-          skill_png:''
+          // skill_name:'',
+          // skill_introduce:'',
+          // skill_png:''
         })
       }
     },

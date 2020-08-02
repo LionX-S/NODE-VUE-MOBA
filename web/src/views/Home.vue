@@ -1,12 +1,11 @@
 <template>
   <div class="home">
-    <swiper ref="mySwiper" :options="swiperOptions">
+    <swiper>
       <swiper-slide>Slide 1</swiper-slide>
       <swiper-slide>Slide 2</swiper-slide>
       <swiper-slide>Slide 3</swiper-slide>
       <swiper-slide>Slide 4</swiper-slide>
       <swiper-slide>Slide 5</swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
     <div class="nav-icons bg-white mt-3  text-center pt-3 text-dark-1">
       <div class="d-flex flex-wrap">
@@ -70,16 +69,16 @@
     },
     data() {
       return {
-        swiperOptions: {
-          pagination: {
-            el: '.swiper-pagination'
-          },
-          // Some Swiper option/callback...
-          autoplay: {
-            delay: 2500,
-            disableOnInteraction: false
-          }
-        },
+        // swiperOptions: {
+        //   pagination: {
+        //     el: '.swiper-pagination'
+        //   },
+        //   // Some Swiper option/callback...
+        //   autoplay: {
+        //     delay: 2500,
+        //     disableOnInteraction: false
+        //   }
+        // },
         categories: [
           {
             name: '新闻',
@@ -144,15 +143,6 @@
         return dayjs(val).format('MM/DD')
       }
     }
-    // computed: {
-    //   swiper() {
-    //     return this.$refs.mySwiper.$swiper
-    //   }
-    // },
-    // mounted() {
-    //   // console.log('Current Swiper instance object', this.swiper)
-    //   this.swiper.slideTo(0, 1000, false)
-    // }
   }
 </script>
 <style scoped>

@@ -2,7 +2,9 @@ import axios from 'axios'
 import Vue from 'vue'
 import router from './router/index'
 const http=axios.create({
-  baseURL:'http://localhost:3000/admin/api'
+  // 设置环境变量 便于上线 VUE_APP_API_URL这个变量为开发环境用的url，打包时没有这个，则会用后面个这个admin
+  baseURL:process.env.VUE_APP_API_URL||'/admin/api'
+  // baseURL:'http://localhost:3000/admin/api'
 });
 http.interceptors.request.use(function (config) {
   // Do something before request is sent
