@@ -1,0 +1,200 @@
+//样式重置
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-size: 13px;
+}
+
+body {
+  margin: 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.2rem;
+  background-color: #f1f1f1;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  color: #999;
+  text-decoration: none;
+}
+p{
+  line-height: 1.5rem;
+}
+//定义颜色
+$colors: (
+        'primary':#db9e3f,
+  //当定义的变量与颜色冲突时，用引号括起来
+        'white':#fff,
+        'light':#f9f9f9,
+        'grey':#999,
+        'black':#333,
+        'dark':#222,
+);
+@each $colorKey, $color in $colors {
+  //文字颜色
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  //背景色
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+
+//text-align
+//遍历方法：$var 表示变量具体某个值,即每一项 in后面可以时一个变量$xxx,也可以是括号里面装着值,跟数组差不多
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+
+//font-size
+$base-font-size: 1rem;
+$font-sizes: (
+        xs:0.769, //10px
+        sm:0.923, //12px
+        md:1, //13px
+        lg:1.077, //14px
+        xl:1.231 //16px
+);
+@each $sizeKey, $size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+.text-ellipse{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+//flex 布局
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap{
+  flex-wrap: wrap;
+}
+$flex-jc: (
+        start:flex-satrt,
+        end:flex-end,
+        center:center,
+        between:space-between,
+        around:space-around
+);
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+$flex-ai: (
+        start:flex-satrt,
+        end:flex-end,
+        center:center,
+        stretch:stretch
+);
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+//spacing
+$spacing-types: (m:margin, p:padding);
+$spacing-directions: (t:top, r:right, b:bottom, l:left);
+$spacing-base-size: 1rem;
+$spacing-size: (0:0, 1:0.25, 2:0.5, 3:1, 4:1.5, 5:3);
+@each $typeKey, $type in $spacing-types {
+  //m-1
+  @each $sizeKey, $size in $spacing-size {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size*$spacing-base-size
+    }
+  }
+  //mx-1
+  @each $sizeKey, $size in $spacing-size {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $size*$spacing-base-size;
+      #{$type}-right: $size*$spacing-base-size,
+    }
+  }
+  //my-1
+  @each $sizeKey, $size in $spacing-size {
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $size*$spacing-base-size;
+      #{$type}-bottom: $size*$spacing-base-size,
+    }
+  }
+  //mt-1
+  @each $directionKey, $direction in $spacing-directions {
+    @each $sizeKey, $size in $spacing-size {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $size*$spacing-base-size
+      }
+    }
+  }
+}
+//btn
+.btn{
+  border: none;
+  border-radius: 0.154rem;
+  font-size: map_get($font-sizes,'sm') * $base-font-size;
+}
+.nav{
+  display: flex;
+  .nav-item{
+    border-bottom: 3px solid transparent;
+    padding-bottom: 0.2rem;
+
+    &.active{
+      color:map-get($colors,'primary') ;
+      border-bottom: 3px solid map-get($colors,'primary');
+    }
+  }
+}
+//width,heiht
+.w-100{
+  width: 100%;
+}
+.w-80{
+  width: 80%;
+}
+.h-100{
+  height: 100%;
+}
+//反色
+.nav-inverse{
+  .nav-item{
+    color:map-get($colors,'white');
+    &.active{
+      color:map-get($colors,'white');;
+      border-bottom: 3px solid map-get($colors,'white');
+    }
+  }
+}
+//border
+@each $dir in (top,right,left,bottom){
+  .border-#{$dir}{
+    border-#{$dir}:1px solid map-get($colors,'grey')
+  }
+}
