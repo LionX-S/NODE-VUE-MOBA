@@ -1,2 +1,2 @@
 # NODE-VUE-MOBA
-王者荣耀官网（仿）
+根据王者荣耀官网实现一个overwatch信息网站
